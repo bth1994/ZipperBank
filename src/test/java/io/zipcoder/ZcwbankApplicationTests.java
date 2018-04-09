@@ -11,6 +11,7 @@ public class ZcwbankApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		String test = "I'm testing";
 	}
 
 }
