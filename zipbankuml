@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>io.zipcoder</OriginalElement>
+  <nodes>
+    <node x="1520.030637254902" y="989.0">io.zipcoder.repositories.WithdrawalRepo</node>
+    <node x="0.0" y="778.0">io.zipcoder.controllers.AddressController</node>
+    <node x="13.0" y="433.0">io.zipcoder.services.AddressService</node>
+    <node x="786.0" y="1079.0">io.zipcoder.services.BillService</node>
+    <node x="252.0" y="1276.0">io.zipcoder.ZcwbankApplication</node>
+    <node x="1482.030637254902" y="701.0">io.zipcoder.entities.Withdrawal</node>
+    <node x="740.724142156863" y="679.0">io.zipcoder.entities.Bill</node>
+    <node x="0.0" y="1276.0">io.zipcoder.ZcwbankApplicationTests</node>
+    <node x="280.0" y="778.0">io.zipcoder.services.CustomerService</node>
+    <node x="750.3908088235296" y="389.0">io.zipcoder.utilities.BillStatus</node>
+    <node x="1426.0678921568629" y="400.0">io.zipcoder.utilities.TransactionStatus</node>
+    <node x="1011.724142156863" y="789.0">io.zipcoder.repositories.AccountRepo</node>
+    <node x="1454.530637254902" y="1180.0">io.zipcoder.controllers.WithdrawalController</node>
+    <node x="1194.530637254902" y="1079.0">io.zipcoder.services.DepositService</node>
+    <node x="1215.9741421568629" y="400.0">io.zipcoder.utilities.TransactionType</node>
+    <node x="1245.030637254902" y="989.0">io.zipcoder.repositories.DepositRepo</node>
+    <node x="1609.749387254902" y="411.0">io.zipcoder.utilities.Medium</node>
+    <node x="1090.7241421568629" y="211.0">io.zipcoder.utilities.AccountType</node>
+    <node x="65.0" y="255.0">io.zipcoder.repositories.AddressRepo</node>
+    <node x="1181.530637254902" y="1180.0">io.zipcoder.controllers.DepositController</node>
+    <node x="1459.530637254902" y="1079.0">io.zipcoder.services.WithrawalService</node>
+    <node x="454.34313725490205" y="0.0">io.zipcoder.entities.Address</node>
+    <node x="1196.030637254902" y="701.0">io.zipcoder.entities.Deposit</node>
+    <node x="267.0" y="978.0">io.zipcoder.controllers.CustomerController</node>
+    <node x="495.84313725490205" y="211.0">io.zipcoder.entities.Customer</node>
+    <node x="1005.974142156863" y="378.0">io.zipcoder.entities.Account</node>
+    <node x="773.0" y="1180.0">io.zipcoder.controllers.BillController</node>
+    <node x="488.75000000000006" y="1079.0">io.zipcoder.controllers.AccountController</node>
+    <node x="822.0" y="989.0">io.zipcoder.repositories.BillRepo</node>
+    <node x="566.0" y="978.0">io.zipcoder.services.AccountService</node>
+    <node x="336.5" y="444.0">io.zipcoder.repositories.CustomerRepo</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="io.zipcoder.services.AddressService" target="io.zipcoder.repositories.AddressRepo">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="io.zipcoder.controllers.AccountController" target="io.zipcoder.services.AccountService">
+      <point x="65.5" y="-25.5" />
+      <point x="685.25" y="1054.0" />
+      <point x="684.0" y="1054.0" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Account" target="io.zipcoder.utilities.AccountType">
+      <point x="71.25" y="-80.5" />
+      <point x="1172.2241421568629" y="358.0" />
+      <point x="1192.7241421568629" y="358.0" />
+      <point x="34.0" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Account" target="io.zipcoder.entities.Customer">
+      <point x="-23.75" y="-80.5" />
+      <point x="1077.2241421568629" y="348.0" />
+      <point x="695.6431372549021" y="348.0" />
+      <point x="88.80000000000007" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Bill" target="io.zipcoder.utilities.BillStatus">
+      <point x="0.0" y="-124.5" />
+      <point x="866.224142156863" y="659.0" />
+      <point x="861.3908088235296" y="659.0" />
+      <point x="37.0" y="69.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Withdrawal" target="io.zipcoder.utilities.TransactionType">
+      <point x="-32.0" y="-102.5" />
+      <point x="1562.030637254902" y="579.0" />
+      <point x="1348.0991421568629" y="579.0" />
+      <point x="56.625" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Deposit" target="io.zipcoder.entities.Account">
+      <point x="-96.0" y="-102.5" />
+      <point x="1212.030637254902" y="659.0" />
+      <point x="1124.7241421568629" y="659.0" />
+      <point x="23.75" y="80.5" />
+    </edge>
+    <edge source="io.zipcoder.controllers.DepositController" target="io.zipcoder.services.DepositService">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="io.zipcoder.services.BillService" target="io.zipcoder.repositories.BillRepo">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Bill" target="io.zipcoder.entities.Account">
+      <point x="83.66666666666663" y="-124.5" />
+      <point x="949.8908088235296" y="659.0" />
+      <point x="1029.7241421568629" y="659.0" />
+      <point x="-71.25" y="80.5" />
+    </edge>
+    <edge source="io.zipcoder.repositories.AccountRepo" target="io.zipcoder.entities.Account">
+      <point x="0.0" y="-14.5" />
+      <point x="-23.75" y="80.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Customer" target="io.zipcoder.entities.Address">
+      <point x="-55.5" y="-58.5" />
+      <point x="0.0" y="80.5" />
+    </edge>
+    <edge source="io.zipcoder.services.AccountService" target="io.zipcoder.entities.Customer">
+      <point x="-59.0" y="-25.5" />
+      <point x="625.0" y="958.0" />
+      <point x="620.724142156863" y="958.0" />
+      <point x="620.724142156863" y="358.0" />
+      <point x="606.8431372549021" y="358.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.repositories.DepositRepo" target="io.zipcoder.entities.Deposit">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="102.5" />
+    </edge>
+    <edge source="io.zipcoder.repositories.WithdrawalRepo" target="io.zipcoder.entities.Withdrawal">
+      <point x="0.0" y="-14.5" />
+      <point x="0.0" y="102.5" />
+    </edge>
+    <edge source="io.zipcoder.repositories.CustomerRepo" target="io.zipcoder.entities.Customer">
+      <point x="0.0" y="-14.5" />
+      <point x="406.0" y="358.0" />
+      <point x="518.043137254902" y="358.0" />
+      <point x="-88.80000000000001" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.repositories.BillRepo" target="io.zipcoder.entities.Bill">
+      <point x="0.0" y="-14.5" />
+      <point x="870.5" y="948.0" />
+      <point x="866.224142156863" y="948.0" />
+      <point x="0.0" y="124.5" />
+    </edge>
+    <edge source="io.zipcoder.controllers.BillController" target="io.zipcoder.services.BillService">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Deposit" target="io.zipcoder.utilities.Medium">
+      <point x="96.0" y="-102.5" />
+      <point x="1404.030637254902" y="639.0" />
+      <point x="1662.624387254902" y="639.0" />
+      <point x="-17.625" y="47.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Deposit" target="io.zipcoder.utilities.TransactionType">
+      <point x="-32.0" y="-102.5" />
+      <point x="1276.030637254902" y="659.0" />
+      <point x="1272.5991421568629" y="659.0" />
+      <point x="-18.875" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Withdrawal" target="io.zipcoder.entities.Account">
+      <point x="-96.0" y="-102.5" />
+      <point x="1498.030637254902" y="599.0" />
+      <point x="1172.2241421568629" y="599.0" />
+      <point x="71.25" y="80.5" />
+    </edge>
+    <edge source="io.zipcoder.repositories.AddressRepo" target="io.zipcoder.entities.Address">
+      <point x="0.0" y="-14.5" />
+      <point x="130.0" y="186.0" />
+      <point x="486.67647058823536" y="186.0" />
+      <point x="-64.66666666666669" y="80.5" />
+    </edge>
+    <edge source="io.zipcoder.services.WithrawalService" target="io.zipcoder.repositories.WithdrawalRepo">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="io.zipcoder.controllers.AddressController" target="io.zipcoder.services.AddressService">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="io.zipcoder.controllers.CustomerController" target="io.zipcoder.services.CustomerService">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="io.zipcoder.controllers.WithdrawalController" target="io.zipcoder.services.WithrawalService">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="io.zipcoder.services.DepositService" target="io.zipcoder.repositories.DepositRepo">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="io.zipcoder.services.AccountService" target="io.zipcoder.repositories.AccountRepo">
+      <point x="59.0" y="-25.5" />
+      <point x="743.0" y="958.0" />
+      <point x="1077.2241421568629" y="958.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Deposit" target="io.zipcoder.utilities.TransactionStatus">
+      <point x="32.0" y="-102.5" />
+      <point x="1340.030637254902" y="619.0" />
+      <point x="1486.4428921568629" y="619.0" />
+      <point x="-20.125" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Withdrawal" target="io.zipcoder.utilities.TransactionStatus">
+      <point x="32.0" y="-102.5" />
+      <point x="1626.030637254902" y="559.0" />
+      <point x="1566.9428921568629" y="559.0" />
+      <point x="60.375" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.controllers.AccountController" target="io.zipcoder.entities.Customer">
+      <point x="-65.5" y="-25.5" />
+      <point x="554.25" y="1054.0" />
+      <point x="555.5" y="1054.0" />
+      <point x="555.5" y="358.0" />
+      <point x="562.443137254902" y="358.0" />
+      <point x="-44.39999999999998" y="58.5" />
+    </edge>
+    <edge source="io.zipcoder.services.CustomerService" target="io.zipcoder.repositories.CustomerRepo">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="io.zipcoder.entities.Withdrawal" target="io.zipcoder.utilities.Medium">
+      <point x="96.0" y="-102.5" />
+      <point x="1690.030637254902" y="659.0" />
+      <point x="1733.124387254902" y="659.0" />
+      <point x="52.875" y="47.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.720754716981132" x="875.5" y="652.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
