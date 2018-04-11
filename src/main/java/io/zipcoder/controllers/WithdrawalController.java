@@ -14,8 +14,11 @@ import javax.xml.ws.Response;
 
 public class WithdrawalController {
 
-    @Autowired
     private WithdrawalService withdrawalService;
+    @Autowired
+    public WithdrawalController(WithdrawalService withdrawalService){
+        this.withdrawalService = withdrawalService;
+    }
 
     @RequestMapping(value = "/accounts/{accountId}/withdrawals", method = RequestMethod.GET)
     public ResponseEntity<?> getAllWithdrawalsFromAccountId(@PathVariable Long accountId){
