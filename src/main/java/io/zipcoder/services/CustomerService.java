@@ -32,7 +32,7 @@ public class CustomerService {
         return null;
     }
 
-    public ResponseEntity<?> updateCustomer(Long customerId) {
+    public ResponseEntity<?> updateCustomer(Long customerId, Customer customer) {
         return null;
     }
 
