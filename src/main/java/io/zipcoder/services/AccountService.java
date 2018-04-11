@@ -1,5 +1,6 @@
 package io.zipcoder.services;
 
+import io.zipcoder.entities.Account;
 import io.zipcoder.entities.Customer;
 import io.zipcoder.repositories.AccountRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class AccountService {
         return null;
     }
 
-    public ResponseEntity<?> updateAccount(Long accountId) {
+    public ResponseEntity<?> updateAccount(Long accountId, Account account) {
         return null;
     }
 
