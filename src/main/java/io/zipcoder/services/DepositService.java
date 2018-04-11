@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class DepositService {
 
-    @Autowired
     private DepositRepo depositRepo;
+
+    @Autowired
+    public DepositService(DepositRepo depositRepo){
+        this.depositRepo = depositRepo;
+    }
 
 }
