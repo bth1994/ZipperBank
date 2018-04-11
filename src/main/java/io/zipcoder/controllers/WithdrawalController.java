@@ -1,11 +1,11 @@
 package io.zipcoder.controllers;
 
-import io.zipcoder.services.WithrawalService;
+import io.zipcoder.services.WithdrawalService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class WithdrawalController {
 
     @Autowired
-    private WithrawalService withrawalService;
+    private WithdrawalService withrawalService;
 
 }

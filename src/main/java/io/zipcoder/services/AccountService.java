@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountService {
 
-    @Autowired
     private AccountRepo accountRepo;
+
+    @Autowired
+    public AccountService(AccountRepo accountRepo){
+        this.accountRepo = accountRepo;
+    }
 
     public ResponseEntity<?> getAllAccounts() {
 

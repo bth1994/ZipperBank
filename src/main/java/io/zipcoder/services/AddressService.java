@@ -7,8 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AddressService {
 
-    @Autowired
     private AddressRepo addressRepo;
 
+    @Autowired
+    public AddressService(AddressRepo addressRepo){
+        this.addressRepo = addressRepo;
+    }
 
 }

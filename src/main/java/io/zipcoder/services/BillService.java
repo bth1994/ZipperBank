@@ -7,6 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class BillService {
 
-    @Autowired
     private BillRepo billRepo;
+
+    @Autowired
+    public BillService(BillRepo billRepo){
+        this.billRepo = billRepo;
+    }
 }
