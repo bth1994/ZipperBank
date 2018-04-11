@@ -5,9 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class WithrawalService {
+public class WithdrawalService {
+
+    private WithdrawalRepo withdrawalRepo;
 
     @Autowired
-    private WithdrawalRepo withdrawalRepo;
+    public WithdrawalService(WithdrawalRepo withdrawalRepo){
+        this.withdrawalRepo = withdrawalRepo;
+    }
+
 
 }
