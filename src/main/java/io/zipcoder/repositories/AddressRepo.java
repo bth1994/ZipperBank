@@ -1,4 +1,7 @@
 package io.zipcoder.repositories;
 
-public interface AddressRepo {
+import io.zipcoder.entities.Address;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AddressRepo extends JpaRepository<Address, Long> {
 }

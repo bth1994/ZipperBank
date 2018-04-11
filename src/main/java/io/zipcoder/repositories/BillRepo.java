@@ -1,4 +1,7 @@
 package io.zipcoder.repositories;
 
-public interface BillRepo {
+import io.zipcoder.entities.Bill;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BillRepo extends JpaRepository<Bill, Long> {
 }
