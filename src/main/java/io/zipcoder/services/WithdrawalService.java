@@ -1,7 +1,9 @@
 package io.zipcoder.services;
 
+import io.zipcoder.entities.Withdrawal;
 import io.zipcoder.repositories.WithdrawalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,6 +15,19 @@ public class WithdrawalService {
     public WithdrawalService(WithdrawalRepo withdrawalRepo){
         this.withdrawalRepo = withdrawalRepo;
     }
-
-
+    public ResponseEntity<?> getAllWithdrawalsFromAccountId(Long accountId){
+        return null;
+    }
+    public ResponseEntity<?> getWithdrawalsByWithdrawalId(Long withdrawalId){
+        return null;
+    }
+    public ResponseEntity<?> createWithdrawal(Long accountId, Withdrawal withdrawal){
+        return null;
+    }
+    public ResponseEntity<?> updateWithdrawal(Long withdrawalId, Withdrawal withdrawal){
+        return null;
+    }
+    public ResponseEntity<?> deleteWithdrawal(Long withdrawalId){
+        return null;
+    }
 }

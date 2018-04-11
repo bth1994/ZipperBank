@@ -1,5 +1,6 @@
 package io.zipcoder.controllers;
 
+import io.zipcoder.entities.Account;
 import io.zipcoder.entities.Customer;
 import io.zipcoder.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class AccountController {
         return accountService.createAccount(customer, customerId);
     }
     @RequestMapping(value = "/accounts/{accountId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateAccount(@PathVariable Long accountId){
-        return accountService.updateAccount(accountId);
+    public ResponseEntity<?> updateAccount(@PathVariable Long accountId, @RequestBody Account account){
+        return accountService.updateAccount(accountId, account);
     }
     @RequestMapping(value = "/accounts/{accountId}", method = RequestMethod.DELETE)
     public ResponseEntity<?> deleteAccount(@PathVariable Long accountId){
