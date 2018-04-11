@@ -42,6 +42,4 @@ public class DepositController {
     public ResponseEntity<?> deleteDeposit(@PathVariable Long depositId) {
         return this.depositService.deleteDeposit(depositId);
     }
-
-//asdfasdfasfadfsadfa
 }
