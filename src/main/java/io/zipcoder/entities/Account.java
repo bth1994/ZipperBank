@@ -24,9 +24,9 @@ public class Account {
 
     @Column(name = "ACCOUNT_BALANCE")
     private Double balance;
-
-    @ManyToOne
-    @Column(name = "CUSTOMER")
+    
+    @OneToOne
+    @JoinColumn(name = "ID")
     private Customer customer;
 
 
