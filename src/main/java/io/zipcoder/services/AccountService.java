@@ -26,7 +26,7 @@ public class AccountService {
         return null;
     }
 
-    public ResponseEntity<Account> getAllAccountsByCustomer(Long customerId) {
+    public ResponseEntity<Iterable<Account>> getAllAccountsByCustomer(Long customerId) {
         return null;
     }
 

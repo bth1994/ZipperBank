@@ -14,32 +14,32 @@ public class AccountController {
     private AccountService accountService;
 
     @RequestMapping(value = "/accounts", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllAccounts(){
+    public ResponseEntity<Iterable<Account>> getAllAccounts(){
         return accountService.getAllAccounts();
     }
 
     @RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getAccountById(@PathVariable Long id){
+    public ResponseEntity<Account> getAccountById(@PathVariable Long id){
         return accountService.getAccountById(id);
     }
 
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllAccountsByCustomer(@PathVariable Long customerId){
+    public ResponseEntity<Iterable<Account>> getAllAccountsByCustomer(@PathVariable Long customerId){
         return accountService.getAllAccountsByCustomer(customerId);
     }
 
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.POST)
-    public ResponseEntity<?> createAccount(@RequestBody Customer customer, @PathVariable Long customerId){
+    public ResponseEntity<Account> createAccount(@RequestBody Customer customer, @PathVariable Long customerId){
         return accountService.createAccount(customer, customerId);
     }
 
     @RequestMapping(value = "/accounts/{accountId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateAccount(@PathVariable Long accountId, @RequestBody Account account){
+    public ResponseEntity<Account> updateAccount(@PathVariable Long accountId, @RequestBody Account account){
         return accountService.updateAccount(accountId, account);
     }
 
     @RequestMapping(value = "/accounts/{accountId}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteAccount(@PathVariable Long accountId){
+    public ResponseEntity deleteAccount(@PathVariable Long accountId){
         return accountService.deleteAccount(accountId);
     }
 }
