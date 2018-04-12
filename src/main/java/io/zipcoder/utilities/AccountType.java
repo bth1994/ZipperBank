@@ -2,21 +2,25 @@ package io.zipcoder.utilities;
 
 public enum AccountType {
 
-    SAVINGS("Savings"),
-    CHECKING("Checking"),
-    CREDIT("Credit");
+    SAVINGS,
+    CHECKING,
+    CREDIT
 
-    private String type;
+//    SAVINGS("Savings"),
+//    CHECKING("Checking"),
+//    CREDIT("Credit");
 
-    AccountType(String type) {
-        this.type = type;
-    }
-
-    public String getValue() {
-        return type;
-    }
-
-    public void setValue(String type) {
-        this.type = type;
-    }
+//    private String type;
+//
+//    AccountType(String type) {
+//        this.type = type;
+//    }
+//
+//    public String getValue() {
+//        return type;
+//    }
+//
+//    public void setValue(String type) {
+//        this.type = type;
+//    }
 }
