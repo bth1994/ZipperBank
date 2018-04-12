@@ -3,15 +3,10 @@ package io.zipcoder.controllers;
 import io.zipcoder.entities.Withdrawal;
 import io.zipcoder.services.WithdrawalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
-
+@RestController
 public class WithdrawalController {
 
     private WithdrawalService withdrawalService;
