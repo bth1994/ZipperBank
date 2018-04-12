@@ -16,23 +16,23 @@ public class CustomerService {
         this.customerRepo = customerRepo;
     }
 
-    public ResponseEntity<?> getCustomerByAccountId(Long accountId) {
+    public ResponseEntity<Customer> getCustomerByAccountId(Long accountId) {
         return null;
     }
 
-    public ResponseEntity<?> getAllCustomers() {
+    public ResponseEntity<Iterable<Customer>> getAllCustomers() {
         return null;
     }
 
-    public ResponseEntity<?> getCustomerByCustomerId(Long id) {
+    public ResponseEntity<Customer> getCustomerByCustomerId(Long id) {
         return null;
     }
 
-    public ResponseEntity<?> createCustomer(Customer customer) {
+    public ResponseEntity<Customer> createCustomer(Customer customer) {
         return null;
     }
 
-    public ResponseEntity<?> updateCustomer(Long customerId, Customer customer) {
+    public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer) {
         return null;
     }
 

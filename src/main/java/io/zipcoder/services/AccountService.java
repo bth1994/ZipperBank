@@ -17,28 +17,28 @@ public class AccountService {
         this.accountRepo = accountRepo;
     }
 
-    public ResponseEntity<?> getAllAccounts() {
+    public ResponseEntity<Iterable<Account>> getAllAccounts() {
 
         return null;
     }
 
-    public ResponseEntity<?> getAccountById(Long accountId) {
+    public ResponseEntity<Account> getAccountById(Long accountId) {
         return null;
     }
 
-    public ResponseEntity<?> getAllAccountsByCustomer(Long customerId) {
+    public ResponseEntity<Iterable<Account>> getAllAccountsByCustomer(Long customerId) {
         return null;
     }
 
-    public ResponseEntity<?> createAccount(Customer customer, Long customerId) {
+    public ResponseEntity<Account> createAccount(Customer customer, Long customerId) {
         return null;
     }
 
-    public ResponseEntity<?> updateAccount(Long accountId, Account account) {
+    public ResponseEntity<Account> updateAccount(Long accountId, Account account) {
         return null;
     }
 
-    public ResponseEntity<?> deleteAccount(Long accountId) {
+    public ResponseEntity deleteAccount(Long accountId) {
         return null;
     }
 

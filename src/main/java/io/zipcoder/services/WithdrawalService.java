@@ -15,19 +15,19 @@ public class WithdrawalService {
     public WithdrawalService(WithdrawalRepo withdrawalRepo){
         this.withdrawalRepo = withdrawalRepo;
     }
-    public ResponseEntity<?> getAllWithdrawalsFromAccountId(Long accountId){
+    public ResponseEntity<Iterable<Withdrawal>> getAllWithdrawalsFromAccountId(Long accountId){
         return null;
     }
-    public ResponseEntity<?> getWithdrawalsByWithdrawalId(Long withdrawalId){
+    public ResponseEntity<Iterable<Withdrawal>> getWithdrawalsByWithdrawalId(Long withdrawalId){
         return null;
     }
-    public ResponseEntity<?> createWithdrawal(Long accountId, Withdrawal withdrawal){
+    public ResponseEntity<Withdrawal> createWithdrawal(Long accountId, Withdrawal withdrawal){
         return null;
     }
-    public ResponseEntity<?> updateWithdrawal(Long withdrawalId, Withdrawal withdrawal){
+    public ResponseEntity<Withdrawal> updateWithdrawal(Long withdrawalId, Withdrawal withdrawal){
         return null;
     }
-    public ResponseEntity<?> deleteWithdrawal(Long withdrawalId){
+    public ResponseEntity deleteWithdrawal(Long withdrawalId){
         return null;
     }
 }
