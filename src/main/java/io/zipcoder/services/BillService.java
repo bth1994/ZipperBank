@@ -16,27 +16,27 @@ public class BillService {
         this.billRepo = billRepo;
     }
 
-    public ResponseEntity<?> getBillsByAccount(Long accountId) {
+    public ResponseEntity<Iterable<Bill>> getBillsByAccount(Long accountId) {
         return null;
     }
 
-    public ResponseEntity<?> getBillByBillId(Long billId) {
+    public ResponseEntity<Bill> getBillByBillId(Long billId) {
         return null;
     }
 
-    public ResponseEntity<?> getBillsByCustomerId(Long customerId) {
+    public ResponseEntity<Iterable<Bill>> getBillsByCustomerId(Long customerId) {
         return null;
     }
 
-    public ResponseEntity<?> createBill(Long accountId, Bill bill) {
+    public ResponseEntity<Bill> createBill(Long accountId, Bill bill) {
         return null;
     }
 
-    public ResponseEntity<?> updateBill(Long billId, Bill bill) {
+    public ResponseEntity<Bill> updateBill(Long billId, Bill bill) {
         return null;
     }
 
-    public ResponseEntity<?> deleteBill(Long billId) {
+    public ResponseEntity deleteBill(Long billId) {
         return null;
     }
 

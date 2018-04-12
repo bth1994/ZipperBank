@@ -42,8 +42,6 @@ public class Bill {
     @Column(name = "ACCOUNT_ID")
     private Long accountId;
 
-
-
     public Long getId() {
         return id;
     }

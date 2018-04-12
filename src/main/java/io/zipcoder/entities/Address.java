@@ -37,12 +37,12 @@ public class Address {
         this.id = id;
     }
 
-    public String getStreeNumber() {
+    public String getStreetNumber() {
         return streetNumber;
     }
 
-    public void setStreeNumber(String streeNumber) {
-        this.streetNumber = streeNumber;
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
     }
 
     public String getStreetName() {

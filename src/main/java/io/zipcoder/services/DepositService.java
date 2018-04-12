@@ -18,23 +18,23 @@ public class DepositService {
         this.depositRepo = depositRepo;
     }
 
-    public ResponseEntity<?> getAllDeposits(Long accountId) {
+    public ResponseEntity<Iterable<Deposit>> getAllDeposits(Long accountId) {
         return null;
     }
 
-    public ResponseEntity<?> getDepositById(Long depositId) {
+    public ResponseEntity<Deposit> getDepositById(Long depositId) {
         return null;
     }
 
-    public ResponseEntity<?> createDeposit(Long accountId, Deposit deposit) {
+    public ResponseEntity<Deposit> createDeposit(Long accountId, Deposit deposit) {
         return null;
     }
 
-    public ResponseEntity<?> updateDeposit(Long depositId, Deposit deposit) {
+    public ResponseEntity<Deposit> updateDeposit(Long depositId, Deposit deposit) {
         return null;
     }
 
-    public ResponseEntity<?> deleteDeposit(Long depositId) {
+    public ResponseEntity deleteDeposit(Long depositId) {
         return null;
     }
 
