@@ -16,29 +16,28 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/accounts/{accountId}/customer", method = RequestMethod.GET)
-    public ResponseEntity<?> getCustomerByAccountId(@PathVariable Long accountId) {
+    public ResponseEntity<Customer> getCustomerByAccountId(@PathVariable Long accountId) {
         return customerService.getCustomerByAccountId(accountId);
     }
 
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllCustomers() {
+    public ResponseEntity<Iterable<Customer>> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getCustomerByCustomerId(@PathVariable Long id) {
+    public ResponseEntity<Customer> getCustomerByCustomerId(@PathVariable Long id) {
         return customerService.getCustomerByCustomerId(id);
     }
 
     @RequestMapping(value = "/customers", method = RequestMethod.POST)
-    public ResponseEntity<?> createCustomer(@RequestBody Customer customer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         return customerService.createCustomer(customer);
     }
 
     @RequestMapping(value = "/customers/{customerId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateCustomer(@PathVariable Long customerId, @RequestBody Customer customer) {
+    public ResponseEntity<Customer> updateCustomer(@PathVariable Long customerId, @RequestBody Customer customer) {
         return customerService.updateCustomer(customerId, customer);
     }
-
 
 }

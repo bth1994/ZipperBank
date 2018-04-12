@@ -19,27 +19,27 @@ public class DepositController {
     }
 
     @RequestMapping(value = "/accounts/{accountId}/deposits", method = RequestMethod.GET)
-    public ResponseEntity<?> getAllDeposits(@PathVariable Long accountId) {
+    public ResponseEntity<Iterable<Deposit>> getAllDeposits(@PathVariable Long accountId) {
         return this.depositService.getAllDeposits(accountId);
     }
 
     @RequestMapping(value = "/deposits/{depositId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getDepositById(@PathVariable Long depositId) {
+    public ResponseEntity<Deposit> getDepositById(@PathVariable Long depositId) {
         return this.depositService.getDepositById(depositId);
     }
 
     @RequestMapping(value = "/accounts/{accountId}/deposits", method = RequestMethod.POST)
-    public ResponseEntity<?> createDeposit(@PathVariable Long accountId, @RequestBody Deposit deposit) {
+    public ResponseEntity<Deposit> createDeposit(@PathVariable Long accountId, @RequestBody Deposit deposit) {
         return this.depositService.createDeposit(accountId, deposit);
     }
 
     @RequestMapping(value = "/deposits/{depositId}", method = RequestMethod.PUT)
-    public ResponseEntity<?> updateDeposit(@PathVariable Long depositId, @RequestBody Deposit deposit) {
+    public ResponseEntity<Deposit> updateDeposit(@PathVariable Long depositId, @RequestBody Deposit deposit) {
         return this.depositService.updateDeposit(depositId, deposit);
     }
 
     @RequestMapping(value = "/deposits/{depositId}", method = RequestMethod.DELETE)
-    public ResponseEntity<?> deleteDeposit(@PathVariable Long depositId) {
+    public ResponseEntity deleteDeposit(@PathVariable Long depositId) {
         return this.depositService.deleteDeposit(depositId);
     }
 }
