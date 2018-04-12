@@ -5,16 +5,27 @@ import io.zipcoder.utilities.TransactionStatus;
 import io.zipcoder.utilities.TransactionType;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 public class Withdrawal {
 
     private Long id;
+
+    @Enumerated(value = EnumType.STRING)
     private TransactionType type;
+
     private String transactionDate;
+
+    @Enumerated(value = EnumType.STRING)
     private TransactionStatus status;
+
     private Long payerId;
+
+    @Enumerated(value = EnumType.STRING)
     private Medium medium;
+
     private Double amount;
     private String description;
 
@@ -28,8 +39,8 @@ public class Withdrawal {
         this.id = id;
     }
 
-    public String getType() {
-        return this.type.getValue();
+    public TransactionType getType() {
+        return this.type;
     }
 
     public void setType(TransactionType type) {
@@ -44,8 +55,8 @@ public class Withdrawal {
         this.transactionDate = transactionDate;
     }
 
-    public String getStatus() {
-        return this.status.getValue();
+    public TransactionStatus getStatus() {
+        return this.status;
     }
 
     public void setStatus(TransactionStatus status) {
@@ -60,8 +71,8 @@ public class Withdrawal {
         this.payerId = account.getId();
     }
 
-    public String getMedium() {
-        return this.medium.getValue();
+    public Medium getMedium() {
+        return this.medium;
     }
 
     public void setMedium(Medium medium) {

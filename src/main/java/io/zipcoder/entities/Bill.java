@@ -3,12 +3,17 @@ package io.zipcoder.entities;
 import io.zipcoder.utilities.BillStatus;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 @Entity
 public class Bill {
 
     private Long id;
+
+    @Enumerated(value = EnumType.STRING)
     private BillStatus status;
+
     private String payee;
     private String nickname;
     private String creationDate;
@@ -28,8 +33,8 @@ public class Bill {
         this.id = id;
     }
 
-    public String getStatus() {
-        return this.status.getValue();
+    public BillStatus getStatus() {
+        return this.status;
     }
 
     public void setStatus(BillStatus status) {
