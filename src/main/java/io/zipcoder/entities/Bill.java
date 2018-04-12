@@ -1,26 +1,45 @@
 package io.zipcoder.entities;
 
 import io.zipcoder.utilities.BillStatus;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
+import javax.validation.groups.ConvertGroup;
 
 @Entity
 public class Bill {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "BILL_ID")
     private Long id;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "STATUS")
     private BillStatus status;
 
+    @Column(name = "PAYEE")
     private String payee;
+
+    @Column(name = "NICKNAME")
     private String nickname;
+
+    @Column(name = "CREATION_DATE")
     private String creationDate;
+
+    @Column(name = "PAYMENT DATE")
     private String paymentDate;
+
+    @Column(name = "RECURRING_DATE")
     private Integer recurringDate;
+
+    @Column(name = "UPCOMING_PAYMENT_DATE")
     private String upcomingPaymentDate;
+
+    @Column(name = "PAYMENT_AMOUNT")
     private Double paymentAmount;
+
+    @Column(name = "ACCOUNT_ID")
     private Long accountId;
 
 

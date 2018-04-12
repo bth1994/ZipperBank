@@ -1,15 +1,31 @@
 package io.zipcoder.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class Address {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "ADDRESS_ID")
     private Long id;
+
+    @Column(name = "STREET_NUMBER")
     private String streetNumber;
+
+    @Column(name = "STREET_NAME")
     private String streetName;
+
+    @Column(name = "CITY")
     private String city;
+
+    @Column(name = "STATE")
     private String state;
+
+    @Column(name = "ZIP")
     private String zip;
 
 

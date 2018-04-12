@@ -2,22 +2,33 @@ package io.zipcoder.entities;
 
 import io.zipcoder.utilities.AccountType;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Entity
 public class Account {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "ACCOUNT_ID")
     private Long id;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "ACCOUNT_TYPE")
     private AccountType type;
 
+    @Column(name = "NICKNAME")
     private String nickname;
+
+    @Column(name = "REWARDS_POINTS")
     private Integer rewards;
+
+    @Column(name = "ACCOUNT_BALANCE")
     private Double balance;
+
+    @ManyToOne
+    @Column(name = "CUSTOMER")
     private Customer customer;
+
 
     public Long getId() {
         return id;

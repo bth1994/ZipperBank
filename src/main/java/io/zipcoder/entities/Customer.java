@@ -1,14 +1,24 @@
 package io.zipcoder.entities;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class Customer {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "CUSTOMER_ID")
     private Long id;
+
+    @Column(name = "FIRST_NAME")
     private String firstName;
+
+    @Column(name = "LAST_NAME")
     private String lastName;
+
+    @OneToMany
+    @Column(name = "ADDRESS")
     private Set<Address> addresses;
 
 

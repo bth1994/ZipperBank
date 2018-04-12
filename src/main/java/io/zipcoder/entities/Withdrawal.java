@@ -4,29 +4,39 @@ import io.zipcoder.utilities.Medium;
 import io.zipcoder.utilities.TransactionStatus;
 import io.zipcoder.utilities.TransactionType;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+
+import javax.persistence.*;
 
 @Entity
 public class Withdrawal {
 
+    @Id
+    @GeneratedValue
+    @Column(name = "WITHDRAWAL_ID")
     private Long id;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "TRANSACTION_TYPE")
     private TransactionType type;
 
+    @Column(name = "TRANSACTION_DATE")
     private String transactionDate;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "TRANSACTION_STATUS")
     private TransactionStatus status;
 
+    @Column(name = "PAYER_ID")
     private Long payerId;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "MEDIUM")
     private Medium medium;
 
+    @Column(name = "WITHDRAWAL_AMOUNT")
     private Double amount;
+
+    @Column(name = "DESCRIPTION")
     private String description;
 
 
