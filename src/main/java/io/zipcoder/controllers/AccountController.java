@@ -4,8 +4,11 @@ import io.zipcoder.entities.Account;
 import io.zipcoder.entities.Customer;
 import io.zipcoder.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class AccountController {
@@ -14,8 +17,8 @@ public class AccountController {
     private AccountService accountService;
 
     @RequestMapping(value = "/accounts", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Account>> getAllAccounts(){
-        return accountService.getAllAccounts();
+    public ResponseEntity<List<Account>> getAllAccounts(){
+        return new ResponseEntity<>(accountService.getAllAccounts(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
@@ -24,8 +27,8 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Account>> getAllAccountsByCustomer(@PathVariable Long customerId){
-        return accountService.getAllAccountsByCustomer(customerId);
+    public ResponseEntity<Iterable<Account>> getAllAccountsByCustomer(@PathVariable Customer customer){
+        return accountService.getAllAccountsByCustomer(customer);
     }
 
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.POST)

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
 
@@ -19,9 +21,8 @@ public class AccountService {
         this.accountRepo = accountRepo;
     }
 
-    public ResponseEntity<Iterable<Account>> getAllAccounts() {
-        Iterable<Account> allAccounts = accountRepo.findAll();
-        return new ResponseEntity<>(allAccounts, HttpStatus.OK);
+    public List<Account> getAllAccounts() {
+        return accountRepo.findAll();
     }
 
     public ResponseEntity<Account> getAccountById(Long accountId) {
