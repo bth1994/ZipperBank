@@ -29,6 +29,13 @@ public class Account {
     @JoinColumn(name = "ID")
     private Customer customer;
 
+    public Account(){}
+
+    public Account(String nickname, AccountType type, Double balance){
+        this.nickname = nickname;
+        this.type = type;
+        this.balance = balance;
+    }
 
     public Long getId() {
         return id;
@@ -77,6 +84,5 @@ public class Account {
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
 
 }

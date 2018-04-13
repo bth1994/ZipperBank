@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
 
@@ -17,7 +19,7 @@ public class AccountService {
         this.accountRepo = accountRepo;
     }
 
-    public ResponseEntity<Iterable<Account>> getAllAccounts() {
+    public List<Account> getAllAccounts() {
 
         return null;
     }
