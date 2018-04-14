@@ -66,12 +66,12 @@ public class AccountControllerTest {
         when(accountService.getAllAccounts()).thenReturn(accountList);
 
         mockMvc.perform(get("/accounts"))
-                .andExpect(status().isOk());
-//                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-//                .andExpect(jsonPath("$", hasSize(2)))
-//                .andExpect(jsonPath("$[0].nickname", is("Joey")))
-//                .andExpect(jsonPath("$[0].type", is("CHECKING")))
-//                .andExpect(jsonPath("$[0].balance", is(500.00)));
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].nickname", is("Joey")))
+                .andExpect(jsonPath("$[0].type", is("CHECKING")))
+                .andExpect(jsonPath("$[0].balance", is(500.00)));
 
         verify(accountService, times(1)).getAllAccounts();
     }
