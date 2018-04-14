@@ -43,7 +43,7 @@ public class AccountService {
         List<Account> allAccounts = accountRepo.findAll();
         List<Account> accountsWithCustomerId = new ArrayList<>();
         for(Account account : allAccounts) {
-            if(account.getCustomerId().equals(customerId)) {
+            if(account.getCustomer().getId().equals(customerId)) {
                 accountsWithCustomerId.add(account);
             }
         }
@@ -51,8 +51,9 @@ public class AccountService {
     }
 
     public ResponseEntity<Account> createAccount(Account account, Long customerId) {
+        Customer customer = customerRepo.findOne(customerId);
         account = accountRepo.save(account);
-        account.setCustomerId(customerId);
+        account.setCustomer(customer);
         return new ResponseEntity<>(account, HttpStatus.CREATED);
     }
 

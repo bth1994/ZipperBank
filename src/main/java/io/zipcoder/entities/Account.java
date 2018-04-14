@@ -27,15 +27,15 @@ public class Account {
     
     @ManyToOne(targetEntity = Customer.class)
     @JoinColumn(name = "CUSTOMER_ID")
-    private Long customerId;
+    private Customer customer;
 
     public Account(){}
 
-    public Account(String nickname, AccountType type, Double balance, Long customerId){
+    public Account(String nickname, AccountType type, Double balance, Customer customer){
         this.nickname = nickname;
         this.type = type;
         this.balance = balance;
-        this.customerId = customerId;
+        this.customer = customer;
     }
 
     public Long getId() {
@@ -78,11 +78,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public Long getCustomerId() {
-        return this.customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
