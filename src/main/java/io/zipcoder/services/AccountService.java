@@ -5,7 +5,6 @@ import io.zipcoder.entities.Customer;
 import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
