@@ -1,10 +1,14 @@
 package io.zipcoder.services;
 
 import io.zipcoder.entities.Account;
+import io.zipcoder.entities.Customer;
 import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.exceptions.ResourceNotFoundException;
+import io.zipcoder.repositories.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -17,10 +21,12 @@ import java.util.List;
 public class AccountService {
 
     private AccountRepo accountRepo;
+    private CustomerRepo customerRepo;
 
     @Autowired
-    public AccountService(AccountRepo accountRepo){
+    public AccountService(AccountRepo accountRepo, CustomerRepo customerRepo){
         this.accountRepo = accountRepo;
+        this.customerRepo = customerRepo;
     }
 
     public List<Account> getAllAccounts() {
@@ -44,19 +50,10 @@ public class AccountService {
         return accountsWithCustomerId;
     }
 
-    public HttpHeaders createAccount(Account account, Long customerId) {
+    public ResponseEntity<Account> createAccount(Account account, Long customerId) {
         account = accountRepo.save(account);
         account.setCustomerId(customerId);
-
-        HttpHeaders responseHeaders = new HttpHeaders();
-        URI newAccountURI = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/customers/{customerId}/accounts")
-                .buildAndExpand(customerId)
-                .toUri();
-        responseHeaders.setLocation(newAccountURI);
-
-        return responseHeaders;
+        return new ResponseEntity<>(account, HttpStatus.CREATED);
     }
 
     public Account updateAccount(Long accountId, Account account) {

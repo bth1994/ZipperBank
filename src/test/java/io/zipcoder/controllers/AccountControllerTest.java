@@ -108,14 +108,13 @@ public class AccountControllerTest {
     @Test
     public void createAccountTest() throws Exception {
         Customer someCustomer = new Customer();
-        someCustomer.setId(14L);
+        someCustomer.setId(1L);
         Long customerId = someCustomer.getId();
         Account newAccount = new Account();
-        HttpHeaders headers = new HttpHeaders();
 
-        when(accountService.createAccount(isA(Account.class), isA(Long.class))).thenReturn(headers);
+        when(accountService.createAccount(newAccount, 1L)).thenReturn(mock(ResponseEntity.class));
 
-        mockMvc.perform(post("/customers/14/accounts")).andExpect(status().isCreated());
+        mockMvc.perform(post("/customers/1/accounts")).andExpect(status().isCreated());
 
         verify(accountService, times(1)).createAccount(newAccount, customerId);
 
