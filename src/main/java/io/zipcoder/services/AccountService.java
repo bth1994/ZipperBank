@@ -4,9 +4,9 @@ import io.zipcoder.entities.Account;
 import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,15 +30,18 @@ public class AccountService {
     }
 
     public List<Account> getAllAccountsByCustomer(Long customerId) {
-        Iterable<Account> accountsContainingId = accountRepo.findAll();
-       while(accountsContainingId.iterator().hasNext()) {
-
-       }
-        return null;
+        List<Account> allAccounts = accountRepo.findAll();
+        List<Account> accountsWithCustomerId = new ArrayList<>();
+        for(Account account : allAccounts) {
+            if(account.getCustomerId().equals(customerId)) {
+                accountsWithCustomerId.add(account);
+            }
+        }
+        return accountsWithCustomerId;
     }
 
     public void createAccount(Account account, Long customerId) {
-        //Find customer by id and add account
+        accountRepo.save(account).setCustomerId(customerId);
     }
 
     public Account updateAccount(Long accountId, Account account) {
@@ -46,8 +49,8 @@ public class AccountService {
         return accountRepo.save(account);
     }
 
-    public ResponseEntity deleteAccount(Long accountId) {
-        return null;
+    public void deleteAccount(Long accountId) {
+        accountRepo.delete(accountId);
     }
 
     public void verifyAccount(Long accountId) throws ResourceNotFoundException {

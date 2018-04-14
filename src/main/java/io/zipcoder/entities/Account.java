@@ -27,11 +27,11 @@ public class Account {
     
     @OneToOne
     @JoinColumn(name = "ID")
-    private Customer customer;
+    private Long customerId;
 
     public Account(){}
 
-    public Account(String nickname, AccountType type, Double balance){
+    public Account(String nickname, AccountType type, Double balance, Long customerId){
         this.nickname = nickname;
         this.type = type;
         this.balance = balance;
@@ -77,12 +77,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
-
 }
