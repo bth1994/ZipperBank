@@ -1,5 +1,7 @@
 package io.zipcoder.services;
 
+import io.zipcoder.entities.Account;
+import io.zipcoder.entities.Customer;
 import io.zipcoder.entities.Withdrawal;
 import io.zipcoder.repositories.WithdrawalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +20,24 @@ public class WithdrawalService {
     }
 
     public ResponseEntity<Iterable<Withdrawal>> getAllWithdrawalsFromAccountId(Long accountId) {
-        return new ResponseEntity<>(withdrawalRepo.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(withdrawalRepo.getAllWithdrawalsFromAccId(accountId), HttpStatus.OK);
     }
 
     public ResponseEntity<Iterable<Withdrawal>> getWithdrawalsByWithdrawalId(Long withdrawalId) {
-        return null;
+        return new ResponseEntity<>(withdrawalRepo.getAllWithdrawalsFromWthDrawId(withdrawalId), HttpStatus.OK);
     }
 
     public ResponseEntity<Withdrawal> createWithdrawal(Long accountId, Withdrawal withdrawal) {
-        return null;
+        return new ResponseEntity<>(withdrawalRepo.save(withdrawal), HttpStatus.OK);
     }
 
     public ResponseEntity<Withdrawal> updateWithdrawal(Long withdrawalId, Withdrawal withdrawal) {
-        return null;
+        return new ResponseEntity<>(withdrawalRepo.save(withdrawal), HttpStatus.OK);
     }
 
     public ResponseEntity deleteWithdrawal(Long withdrawalId) {
-        return null;
+        withdrawalRepo.delete(withdrawalId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

@@ -26,7 +26,8 @@ public class Withdrawal {
     @Column(name = "TRANSACTION_STATUS")
     private TransactionStatus status;
 
-    @Column(name = "PAYER_ID")
+    @ManyToOne(targetEntity = Account.class)
+    @JoinColumn(name = "PAYER_ID")
     private Long payerId;
 
     @Enumerated(value = EnumType.STRING)
