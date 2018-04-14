@@ -1,10 +1,8 @@
 package io.zipcoder.entities;
 
 import io.zipcoder.utilities.BillStatus;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
-import javax.validation.groups.ConvertGroup;
 
 @Entity
 public class Bill {
@@ -39,7 +37,8 @@ public class Bill {
     @Column(name = "PAYMENT_AMOUNT")
     private Double paymentAmount;
 
-    @Column(name = "ACCOUNT_ID")
+    @OneToOne(targetEntity = Account.class)
+    @JoinColumn(name = "ACCOUNT_ID")
     private Long accountId;
 
     public Long getId() {
