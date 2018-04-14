@@ -1,6 +1,7 @@
 package io.zipcoder.controllers;
 
 import io.zipcoder.entities.Account;
+import io.zipcoder.entities.Customer;
 import io.zipcoder.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +32,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.POST)
-    public ResponseEntity<?> createAccount(@RequestBody Account account, @PathVariable Long customerId){
+    public ResponseEntity<Account> createAccount(@RequestBody Account account, @PathVariable Long customerId){
         return accountService.createAccount(account, customerId);
     }
 

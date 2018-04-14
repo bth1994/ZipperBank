@@ -1,5 +1,6 @@
 package io.zipcoder.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.zipcoder.entities.Account;
 import io.zipcoder.entities.Address;
 import io.zipcoder.entities.Customer;
@@ -32,14 +33,13 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AccountControllerTest {
 
     private MockMvc mockMvc;
@@ -50,18 +50,23 @@ public class AccountControllerTest {
     @InjectMocks
     private AccountController accountController;
 
+    private ObjectMapper om;
+
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(accountController).build();
+        om = new ObjectMapper();
     }
 
     @Test
     public void getAllAccountsTest() throws Exception {
 
         List<Account> accountList = new ArrayList<>();
-        Account account1 = new Account("Joey", AccountType.CHECKING, 500.00, 11L);
-        Account account2 = new Account("Vince", AccountType.CHECKING, 400.00, 14L);
+        Customer customer = new Customer();
+        Customer customer2 = new Customer();
+        Account account1 = new Account("Joey", AccountType.CHECKING, 500.00, customer);
+        Account account2 = new Account("Vince", AccountType.CHECKING, 400.00, customer2);
         accountList.add(account1);
         accountList.add(account2);
 
@@ -80,7 +85,8 @@ public class AccountControllerTest {
 
     @Test
     public void getAccountByIdTest() throws Exception {
-        Account account1 = new Account("Joey", AccountType.CHECKING, 500.00, 11L);
+        Customer customer = new Customer();
+        Account account1 = new Account("Joey", AccountType.CHECKING, 500.00, customer);
 
         when(accountService.getAccountById(2L)).thenReturn(account1);
 
@@ -93,8 +99,9 @@ public class AccountControllerTest {
     @Test
     public void getAllAccountsByCustomerTest() throws Exception {
         List<Account> accountList = new ArrayList<>();
-        Account account1 = new Account("Joeys Checking", AccountType.CHECKING, 500.00, 14L);
-        Account account2 = new Account("Joeys Savings", AccountType.SAVINGS, 400.00, 14L);
+        Customer customer = new Customer();
+        Account account1 = new Account("Joeys Checking", AccountType.CHECKING, 500.00, customer);
+        Account account2 = new Account("Joeys Savings", AccountType.SAVINGS, 400.00, customer);
         accountList.add(account1);
         accountList.add(account2);
 
@@ -107,18 +114,38 @@ public class AccountControllerTest {
 
     @Test
     public void createAccountTest() throws Exception {
-        Customer someCustomer = new Customer();
-        someCustomer.setId(14L);
-        Long customerId = someCustomer.getId();
         Account newAccount = new Account();
+        Customer someCustomer = new Customer();
+        someCustomer.setId(1L);
+        newAccount.setCustomer(someCustomer);
 
-        when(accountService.createAccount(isA(Account.class), isA(Long.class))).thenReturn(mock(ResponseEntity.class));
+        String body = om.writeValueAsString(newAccount);
 
-        mockMvc.perform(post("/customers/14/accounts")).andExpect(status().isCreated());
+        when(accountService.createAccount(newAccount, someCustomer.getId())).thenReturn(mock(ResponseEntity.class));
 
-        verify(accountService, times(1)).createAccount(newAccount, customerId);
 
+        mockMvc.perform(post("/customers/1/accounts")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body))
+                .andExpect(status().isOk());
     }
 
+    @Test
+    public void updateAccountTest() throws Exception {
+        Account testAccount = new Account();
+        String body = om.writeValueAsString(testAccount);
+
+        when(accountService.updateAccount(isA(Long.class), isA(Account.class))).thenReturn(testAccount);
+
+        mockMvc.perform(put("/accounts/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(body)).andExpect(status().isOk());
+    }
+
+    @Test
+    public void deleteAccountTest() throws Exception {
+
+        mockMvc.perform(delete("/accounts/1")).andExpect(status().isOk());
+    }
 
 }
