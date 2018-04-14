@@ -1,11 +1,9 @@
 package io.zipcoder.services;
 
 import io.zipcoder.entities.Account;
-import io.zipcoder.entities.Customer;
 import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +23,13 @@ public class AccountService {
         return accountRepo.findAll();
     }
 
-    public ResponseEntity<Account> getAccountById(Long accountId) {
+    public Account getAccountById(Long accountId) {
         Account account = accountRepo.findOne(accountId);
         verifyAccount(accountId);
-        return new ResponseEntity<>(account, HttpStatus.OK);
+        return account;
     }
 
-    public ResponseEntity<Iterable<Account>> getAllAccountsByCustomer(Customer customer) {
+    public List<Account> getAllAccountsByCustomer(Long customerId) {
         Iterable<Account> accountsContainingId = accountRepo.findAll();
        while(accountsContainingId.iterator().hasNext()) {
 
@@ -39,16 +37,13 @@ public class AccountService {
         return null;
     }
 
-    public ResponseEntity<Account> createAccount(Customer customer, Long customerId) {
-
-        return null;
+    public void createAccount(Account account, Long customerId) {
+        //Find customer by id and add account
     }
 
-    public ResponseEntity<Account> updateAccount(Long accountId, Account account) {
-        account.setId(accountId);
-        accountRepo.save(account);
+    public Account updateAccount(Long accountId, Account account) {
         verifyAccount(accountId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return accountRepo.save(account);
     }
 
     public ResponseEntity deleteAccount(Long accountId) {
