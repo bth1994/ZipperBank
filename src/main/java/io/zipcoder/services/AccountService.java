@@ -4,9 +4,13 @@ import io.zipcoder.entities.Account;
 import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -40,8 +44,19 @@ public class AccountService {
         return accountsWithCustomerId;
     }
 
-    public void createAccount(Account account, Long customerId) {
-        accountRepo.save(account).setCustomerId(customerId);
+    public HttpHeaders createAccount(Account account, Long customerId) {
+        account = accountRepo.save(account);
+        account.setCustomerId(customerId);
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newAccountURI = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{customerId/accounts}")
+                .buildAndExpand(customerId)
+                .toUri();
+        responseHeaders.setLocation(newAccountURI);
+
+        return responseHeaders;
     }
 
     public Account updateAccount(Long accountId, Account account) {
@@ -53,7 +68,7 @@ public class AccountService {
         accountRepo.delete(accountId);
     }
 
-    public void verifyAccount(Long accountId) throws ResourceNotFoundException {
+    private void verifyAccount(Long accountId) throws ResourceNotFoundException {
         Account account = accountRepo.findOne(accountId);
         if(account == null) {
             throw new ResourceNotFoundException("Account with id " + accountId + " not found");

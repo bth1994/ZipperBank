@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class CustomerController {
 
@@ -22,7 +24,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Customer>> getAllCustomers() {
+    public ResponseEntity<List<Customer>> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
