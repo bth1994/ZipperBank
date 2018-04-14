@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -110,8 +111,9 @@ public class AccountControllerTest {
         someCustomer.setId(14L);
         Long customerId = someCustomer.getId();
         Account newAccount = new Account();
+        HttpHeaders headers = new HttpHeaders();
 
-        doNothing().when(accountService).createAccount(isA(Account.class), isA(Long.class));
+        when(accountService.createAccount(isA(Account.class), isA(Long.class))).thenReturn(headers);
 
         mockMvc.perform(post("/customers/14/accounts")).andExpect(status().isCreated());
 
