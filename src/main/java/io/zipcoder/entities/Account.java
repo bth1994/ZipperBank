@@ -85,5 +85,4 @@ public class Account {
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
-
 }
