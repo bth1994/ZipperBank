@@ -1,7 +1,6 @@
 package io.zipcoder.controllers;
 
 import io.zipcoder.entities.Account;
-import io.zipcoder.entities.Customer;
 import io.zipcoder.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,26 +22,28 @@ public class AccountController {
 
     @RequestMapping(value = "/accounts/{id}", method = RequestMethod.GET)
     public ResponseEntity<Account> getAccountById(@PathVariable Long id){
-        return accountService.getAccountById(id);
+        return new ResponseEntity<>(accountService.getAccountById(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Account>> getAllAccountsByCustomer(@PathVariable Customer customer){
-        return accountService.getAllAccountsByCustomer(customer);
+    public ResponseEntity<List<Account>> getAllAccountsByCustomer(@PathVariable Long customerId){
+        return new ResponseEntity<>(accountService.getAllAccountsByCustomer(customerId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.POST)
-    public void createAccount(@RequestBody Account account, @PathVariable Long customerId){
+    public ResponseEntity createAccount(@RequestBody Account account, @PathVariable Long customerId){
         accountService.createAccount(account, customerId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/accounts/{accountId}", method = RequestMethod.PUT)
     public ResponseEntity<Account> updateAccount(@PathVariable Long accountId, @RequestBody Account account){
-        return accountService.updateAccount(accountId, account);
+        return new ResponseEntity<>(accountService.updateAccount(accountId, account), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/accounts/{accountId}", method = RequestMethod.DELETE)
     public ResponseEntity deleteAccount(@PathVariable Long accountId){
-        return accountService.deleteAccount(accountId);
+        accountService.deleteAccount(accountId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }
