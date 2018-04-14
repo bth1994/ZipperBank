@@ -51,7 +51,7 @@ public class AccountService {
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newAccountURI = ServletUriComponentsBuilder
                 .fromCurrentRequest()
-                .path("/{customerId/accounts}")
+                .path("/customers/{customerId}/accounts")
                 .buildAndExpand(customerId)
                 .toUri();
         responseHeaders.setLocation(newAccountURI);
