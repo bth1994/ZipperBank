@@ -31,7 +31,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.POST)
-    public ResponseEntity<?> createAccount(@RequestBody Account account, @PathVariable Long customerId){
+    public ResponseEntity<Account> createAccount(@RequestBody Account account, @PathVariable Long customerId){
         return new ResponseEntity<>(null, accountService.createAccount(account, customerId), HttpStatus.CREATED);
     }
 
