@@ -126,7 +126,6 @@ public class AccountControllerTest {
 
     @Test
     public void deleteAccountTest() throws Exception {
-
         mockMvc.perform(delete("/accounts/1")).andExpect(status().isOk());
     }
 

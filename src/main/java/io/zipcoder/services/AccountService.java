@@ -59,5 +59,4 @@ public class AccountService {
             throw new ResourceNotFoundException("Account with id " + accountId + " not found");
         }
     }
-
 }
