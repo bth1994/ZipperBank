@@ -24,7 +24,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customers", method = RequestMethod.GET)
-    public ResponseEntity<List<Customer>> getAllCustomers() {
+    public ResponseEntity<Iterable<Customer>> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 

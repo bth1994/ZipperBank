@@ -2,40 +2,26 @@ package io.zipcoder.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.zipcoder.entities.Account;
-import io.zipcoder.entities.Address;
 import io.zipcoder.entities.Customer;
-import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.services.AccountService;
-import io.zipcoder.utilities.AccountType;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.BDDMockito.given;
+import static java.util.Collections.singletonList;
 import static org.mockito.Mockito.*;
+import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -51,26 +37,27 @@ public class AccountControllerTest {
     private AccountController accountController;
 
     private ObjectMapper om;
+    private Account mockAccount;
 
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(accountController).build();
         om = new ObjectMapper();
+
+        Customer mockCustomer = new Customer();
+
+        mockAccount = new Account();
+        mockAccount.setId(1L);
+        mockAccount.setCustomer(mockCustomer);
     }
 
     @Test
     public void getAllAccountsTest() throws Exception {
+        Iterable<Account> accounts = singletonList(mockAccount);
+        ResponseEntity<Iterable<Account>> response = new ResponseEntity<>(accounts, OK);
 
-        List<Account> accountList = new ArrayList<>();
-        Customer customer = new Customer();
-        Customer customer2 = new Customer();
-        Account account1 = new Account("Joey", AccountType.CHECKING, 500.00, customer);
-        Account account2 = new Account("Vince", AccountType.CHECKING, 400.00, customer2);
-        accountList.add(account1);
-        accountList.add(account2);
-
-        when(accountService.getAllAccounts()).thenReturn(accountList);
+        when(accountService.getAllAccounts()).thenReturn(response);
 
         mockMvc.perform(get("/accounts"))
                 .andExpect(status().isOk());
@@ -85,10 +72,9 @@ public class AccountControllerTest {
 
     @Test
     public void getAccountByIdTest() throws Exception {
-        Customer customer = new Customer();
-        Account account1 = new Account("Joey", AccountType.CHECKING, 500.00, customer);
+        ResponseEntity<Account> response = new ResponseEntity<>(mockAccount, OK);
 
-        when(accountService.getAccountById(2L)).thenReturn(account1);
+        when(accountService.getAccountById(2L)).thenReturn(response);
 
         mockMvc.perform(get("/accounts/2"))
                 .andExpect(status().isOk());
@@ -98,14 +84,10 @@ public class AccountControllerTest {
 
     @Test
     public void getAllAccountsByCustomerTest() throws Exception {
-        List<Account> accountList = new ArrayList<>();
-        Customer customer = new Customer();
-        Account account1 = new Account("Joeys Checking", AccountType.CHECKING, 500.00, customer);
-        Account account2 = new Account("Joeys Savings", AccountType.SAVINGS, 400.00, customer);
-        accountList.add(account1);
-        accountList.add(account2);
+        Iterable<Account> accounts = singletonList(mockAccount);
+        ResponseEntity<Iterable<Account>> response = new ResponseEntity<>(accounts, OK);
 
-        when(accountService.getAllAccountsByCustomer(14L)).thenReturn(accountList);
+        when(accountService.getAllAccountsByCustomer(mockAccount.getCustomer().getId())).thenReturn(response);
 
         mockMvc.perform(get("/customers/14/accounts")).andExpect(status().isOk());
 
@@ -132,10 +114,10 @@ public class AccountControllerTest {
 
     @Test
     public void updateAccountTest() throws Exception {
-        Account testAccount = new Account();
-        String body = om.writeValueAsString(testAccount);
+        ResponseEntity<Account> response = new ResponseEntity<>(mockAccount, OK);
+        String body = om.writeValueAsString(response);
 
-        when(accountService.updateAccount(isA(Long.class), isA(Account.class))).thenReturn(testAccount);
+        when(accountService.updateAccount(isA(Long.class), isA(Account.class))).thenReturn(response);
 
         mockMvc.perform(put("/accounts/1")
                 .contentType(MediaType.APPLICATION_JSON)
