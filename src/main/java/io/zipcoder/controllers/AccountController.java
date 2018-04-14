@@ -1,14 +1,11 @@
 package io.zipcoder.controllers;
 
 import io.zipcoder.entities.Account;
-import io.zipcoder.entities.Customer;
 import io.zipcoder.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 public class AccountController {

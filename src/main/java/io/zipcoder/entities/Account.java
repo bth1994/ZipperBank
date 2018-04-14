@@ -25,7 +25,7 @@ public class Account {
     @Column(name = "ACCOUNT_BALANCE")
     private Double balance;
     
-    @ManyToOne(targetEntity = Customer.class)
+    @ManyToOne
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
 

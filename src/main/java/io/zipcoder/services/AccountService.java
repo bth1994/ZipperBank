@@ -38,8 +38,8 @@ public class AccountService {
 
     public ResponseEntity<Account> createAccount(Account account, Long customerId) {
         Customer customer = customerRepo.findOne(customerId);
-        account = accountRepo.save(account);
         account.setCustomer(customer);
+        account = accountRepo.save(account);
         return new ResponseEntity<>(account, HttpStatus.CREATED);
     }
 
