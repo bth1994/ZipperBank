@@ -6,16 +6,9 @@ import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.exceptions.ResourceNotFoundException;
 import io.zipcoder.repositories.CustomerRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 @Service
 public class AccountService {
@@ -29,25 +22,18 @@ public class AccountService {
         this.customerRepo = customerRepo;
     }
 
-    public List<Account> getAllAccounts() {
-        return accountRepo.findAll();
+    public ResponseEntity<Iterable<Account>> getAllAccounts() {
+        return new ResponseEntity<>(accountRepo.findAll(), HttpStatus.OK);
     }
 
-    public Account getAccountById(Long accountId) {
+    public ResponseEntity<Account> getAccountById(Long accountId) {
         Account account = accountRepo.findOne(accountId);
         verifyAccount(accountId);
-        return account;
+        return new ResponseEntity<>(account, HttpStatus.OK);
     }
 
-    public List<Account> getAllAccountsByCustomer(Long customerId) {
-        List<Account> allAccounts = accountRepo.findAll();
-        List<Account> accountsWithCustomerId = new ArrayList<>();
-        for(Account account : allAccounts) {
-            if(account.getCustomer().getId().equals(customerId)) {
-                accountsWithCustomerId.add(account);
-            }
-        }
-        return accountsWithCustomerId;
+    public ResponseEntity<Iterable<Account>> getAllAccountsByCustomer(Long customerId) {
+        return new ResponseEntity<>(accountRepo.findAllAccountsByCustomerId(customerId), HttpStatus.OK);
     }
 
     public ResponseEntity<Account> createAccount(Account account, Long customerId) {
@@ -57,13 +43,14 @@ public class AccountService {
         return new ResponseEntity<>(account, HttpStatus.CREATED);
     }
 
-    public Account updateAccount(Long accountId, Account account) {
+    public ResponseEntity<Account> updateAccount(Long accountId, Account account) {
         verifyAccount(accountId);
-        return accountRepo.save(account);
+        return new ResponseEntity<>(accountRepo.save(account), HttpStatus.OK);
     }
 
-    public void deleteAccount(Long accountId) {
+    public ResponseEntity<?> deleteAccount(Long accountId) {
         accountRepo.delete(accountId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     private void verifyAccount(Long accountId) throws ResourceNotFoundException {

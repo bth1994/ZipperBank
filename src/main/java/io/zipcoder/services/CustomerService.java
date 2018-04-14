@@ -16,18 +16,21 @@ import java.util.List;
 public class CustomerService {
 
     private CustomerRepo customerRepo;
+    private AccountRepo accountRepo;
 
     @Autowired
-    public CustomerService(CustomerRepo customerRepo){
+    public CustomerService(CustomerRepo customerRepo, AccountRepo accountRepo) {
         this.customerRepo = customerRepo;
+        this.accountRepo = accountRepo;
     }
 
     public ResponseEntity<Customer> getCustomerByAccountId(Long accountId) {
-
-        return null;
+        Account account = accountRepo.findOne(accountId);
+        Customer customer = account.getCustomer();
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Customer>> getAllCustomers() {
+    public ResponseEntity<Iterable<Customer>> getAllCustomers() {
         return new ResponseEntity<>(customerRepo.findAll(), HttpStatus.OK);
     }
 

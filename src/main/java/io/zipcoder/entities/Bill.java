@@ -39,7 +39,7 @@ public class Bill {
 
     @OneToOne(targetEntity = Account.class)
     @JoinColumn(name = "ACCOUNT_ID")
-    private Long accountId;
+    private Account account;
 
     public Long getId() {
         return id;
@@ -113,12 +113,12 @@ public class Bill {
         this.paymentAmount = paymentAmount;
     }
 
-    public Long getAccountId() {
-        return accountId;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setAccountId(Account account) {
-        this.accountId = account.getId();
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
 }

@@ -2,6 +2,7 @@ package io.zipcoder.repositories;
 
 import io.zipcoder.entities.Deposit;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface DepositRepo extends JpaRepository<Deposit, Long> {
+public interface DepositRepo extends CrudRepository<Deposit, Long> {
 }
