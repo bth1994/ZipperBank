@@ -111,9 +111,8 @@ public class AccountControllerTest {
         someCustomer.setId(14L);
         Long customerId = someCustomer.getId();
         Account newAccount = new Account();
-        HttpHeaders headers = new HttpHeaders();
 
-        when(accountService.createAccount(isA(Account.class), isA(Long.class))).thenReturn(headers);
+        when(accountService.createAccount(isA(Account.class), isA(Long.class))).thenReturn(mock(ResponseEntity.class));
 
         mockMvc.perform(post("/customers/14/accounts")).andExpect(status().isCreated());
 
