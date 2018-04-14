@@ -33,7 +33,7 @@ public class AccountController {
     @RequestMapping(value = "/customers/{customerId}/accounts", method = RequestMethod.POST)
     public ResponseEntity createAccount(@RequestBody Account account, @PathVariable Long customerId){
         accountService.createAccount(account, customerId);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/accounts/{accountId}", method = RequestMethod.PUT)
