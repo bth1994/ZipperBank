@@ -44,7 +44,7 @@ public class AccountService {
     }
 
     public ResponseEntity<Account> updateAccount(Long accountId, Account account) {
-        verifyAccount(accountId);
+//        verifyAccount(accountId);
         return new ResponseEntity<>(accountRepo.save(account), HttpStatus.OK);
     }
 
