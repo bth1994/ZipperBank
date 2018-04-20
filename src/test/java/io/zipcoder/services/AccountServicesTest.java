@@ -104,6 +104,12 @@ public class AccountServicesTest {
     @Test
     public void updateAccountTest() {
 
+        when(accountRepo.save(any(Account.class))).thenReturn(testAccount);
+
+        ResponseEntity<Account> expected = new ResponseEntity<>(testAccount, HttpStatus.OK);
+        ResponseEntity<Account> actual = accountService.updateAccount(testAccount.getId(), testAccount);
+        Assert.assertEquals(expected, actual);
+
     }
 
     @Test
