@@ -8,5 +8,5 @@ public interface WithdrawalRepo extends CrudRepository<Withdrawal, Long> {
 
     Iterable<Withdrawal> findByAccountId(Long accountId);
 
-    Withdrawal findByAccount(Long withdrawalId);
+
 }
