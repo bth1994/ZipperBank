@@ -13,8 +13,8 @@ public class DepositService {
     @Autowired
     private DepositRepo depositRepo;
 
-    public ResponseEntity<Iterable<Deposit>> getAllDepositsFromAccountId(Long accountId) {
-        return new ResponseEntity<>(depositRepo.getAllDepositsFromAccId(accountId), HttpStatus.OK);
+    public ResponseEntity<Iterable<Deposit>> getAllDepositsFromAccount(Long accountId) {
+        return new ResponseEntity<>(depositRepo.findByAccountId(accountId), HttpStatus.OK);
     }
 
     public ResponseEntity<Deposit> getDepositById(Long depositId) {

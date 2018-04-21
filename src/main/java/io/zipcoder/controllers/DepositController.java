@@ -18,7 +18,7 @@ public class DepositController {
 
     @RequestMapping(value = "/accounts/{accountId}/deposits", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Deposit>> getAllDeposits(@PathVariable Long accountId) {
-        return this.depositService.getAllDepositsFromAccountId(accountId);
+        return this.depositService.getAllDepositsFromAccount(accountId);
     }
 
     @RequestMapping(value = "/deposits/{depositId}", method = RequestMethod.GET)

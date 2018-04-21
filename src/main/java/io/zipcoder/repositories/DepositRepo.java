@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 public interface DepositRepo extends CrudRepository<Deposit, Long> {
-    Iterable<Deposit> getAllDepositsFromAccId(Long accountId);
+    Iterable<Deposit> findByAccountId(Long accountId);
 }

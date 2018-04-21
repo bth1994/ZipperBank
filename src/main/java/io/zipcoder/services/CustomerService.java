@@ -35,16 +35,16 @@ public class CustomerService {
     }
 
     public ResponseEntity<Customer> getCustomerByCustomerId(Long id) {
-        verifyCustomer(id);
+//        verifyCustomer(id);
         return new ResponseEntity<>(customerRepo.findOne(id), HttpStatus.OK);
     }
 
     public ResponseEntity<Customer> createCustomer(Customer customer) {
-        return new ResponseEntity<>(customerRepo.save(customer), HttpStatus.OK);
+        return new ResponseEntity<>(customerRepo.save(customer), HttpStatus.CREATED);
     }
 
     public ResponseEntity<Customer> updateCustomer(Long customerId, Customer customer) {
-        verifyCustomer(customerId);
+//        verifyCustomer(customerId);
         return new ResponseEntity<>(customerRepo.save(customer), HttpStatus.OK);
     }
 
