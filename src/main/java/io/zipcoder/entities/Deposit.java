@@ -25,8 +25,8 @@ public class Deposit {
     @Column(name = "TRANSACTION_STATUS")
     private TransactionStatus status;
 
-    @Column(name = "PAYEE_ID")
-    private Long payeeId;
+    @ManyToOne
+    private Account account;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "MEDIUM")
@@ -72,12 +72,12 @@ public class Deposit {
         this.status = status;
     }
 
-    public Long getPayeeId() {
-        return payeeId;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setPayeeId(Account account) {
-        this.payeeId = account.getId();
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Medium getMedium() {
