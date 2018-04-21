@@ -62,10 +62,28 @@ public class DepositServicesTest {
     }
 
     @Test
-    public void getAllDepositsByDepositIdtest() {
-        Iterable<Deposit> depositList = singletonList(depositTester);
-        when(depositRepo.getAllDepositsFromDepositId(isA(Long.class))).thenReturn(depositList);
+    public void createDepositTest() {
+        when(depositRepo.findOne(1L)).thenReturn(depositTester);
+        when(depositRepo.save(isA(Deposit.class))).thenReturn(depositTester);
+        ResponseEntity<Deposit> expected = new ResponseEntity<>(depositTester, HttpStatus.CREATED);
+        ResponseEntity<Deposit> actual = depositService.createDeposit(depositTester.getId(), depositTester);
+        Assert.assertEquals(expected, actual);
+    }
 
-        ResponseEntity<Iterable<Deposit>> expected = new ResponseEntity<>(depositList, HttpStatus.OK);
+    @Test
+    public void updateDepositTest() {
+        when(depositRepo.save(isA(Deposit.class))).thenReturn(depositTester);
+        ResponseEntity<Deposit> expected = new ResponseEntity<>(depositTester, HttpStatus.OK);
+        ResponseEntity<Deposit> actual = depositService.updateDeposit(depositTester.getId(), depositTester);
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void deleteDepositTest() {
+        ResponseEntity expected = new ResponseEntity(HttpStatus.OK);
+        ResponseEntity actual = depositService.deleteDeposit(depositTester.getId());
+        verify(depositRepo).delete(isA(Long.class));
+        Assert.assertEquals(expected, actual);
     }
 }
