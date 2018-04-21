@@ -1,5 +1,7 @@
 package io.zipcoder.services;
 
+import io.zipcoder.entities.Account;
+import io.zipcoder.entities.Customer;
 import io.zipcoder.entities.Withdrawal;
 import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.repositories.WithdrawalRepo;
