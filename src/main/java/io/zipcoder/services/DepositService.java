@@ -3,37 +3,35 @@ package io.zipcoder.services;
 import io.zipcoder.entities.Deposit;
 import io.zipcoder.repositories.DepositRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DepositService {
 
+    @Autowired
     private DepositRepo depositRepo;
 
-    @Autowired
-    public DepositService(DepositRepo depositRepo){
-        this.depositRepo = depositRepo;
-    }
-
     public ResponseEntity<Iterable<Deposit>> getAllDeposits(Long accountId) {
-        return null;
+        return new ResponseEntity<>(depositRepo.findAll(), HttpStatus.OK);
     }
 
     public ResponseEntity<Deposit> getDepositById(Long depositId) {
-        return null;
+        return new ResponseEntity<>(depositRepo.findOne(depositId), HttpStatus.OK);
     }
 
     public ResponseEntity<Deposit> createDeposit(Long accountId, Deposit deposit) {
-        return null;
+        return new ResponseEntity<>(depositRepo.save(deposit), HttpStatus.CREATED);
     }
 
     public ResponseEntity<Deposit> updateDeposit(Long depositId, Deposit deposit) {
-        return null;
+        return new ResponseEntity<>(depositRepo.save(deposit), HttpStatus.OK);
     }
 
     public ResponseEntity deleteDeposit(Long depositId) {
-        return null;
+        depositRepo.delete(depositId);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }

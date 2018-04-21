@@ -9,19 +9,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class WithdrawalController {
 
-    private WithdrawalService withdrawalService;
-
     @Autowired
-    public WithdrawalController(WithdrawalService withdrawalService){
-        this.withdrawalService = withdrawalService;
-    }
+    private WithdrawalService withdrawalService;
 
     @RequestMapping(value = "/accounts/{accountId}/withdrawals", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Withdrawal>> getAllWithdrawalsFromAccountId(@PathVariable Long accountId){
         return withdrawalService.getAllWithdrawalsFromAccountId(accountId);
     }
     @RequestMapping(value = "/withdrawals/{withdrawalId}", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<Withdrawal>> getWithdrawalsByWithdrawalId(@PathVariable Long withdrawalId){
+    public ResponseEntity<Withdrawal> getWithdrawalsByWithdrawalId(@PathVariable Long withdrawalId){
         return withdrawalService.getWithdrawalsByWithdrawalId(withdrawalId);
     }
     @RequestMapping(value = "/accounts/{accountId}/withdrawals", method = RequestMethod.POST)
