@@ -29,12 +29,16 @@ import static org.mockito.Mockito.when;
 public class WithdrawalServiceTest {
 
     @Mock
+    private AccountRepo accountRepo;
+
+    @Mock
     private WithdrawalRepo withdrawalRepo;
 
     @InjectMocks
     private WithdrawalService withdrawalService;
 
     private Withdrawal testWithdrawal;
+    private Account testAccount;
 
     @Before
     public void init(){
