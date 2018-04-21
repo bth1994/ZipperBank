@@ -44,10 +44,10 @@ public class DepositServicesTest {
     @Test
     public void getAllDepositsTest() {
         Iterable<Deposit> depositsList = singletonList(depositTester);
-        when(depositRepo.getAllDepositsFromAccId(isA(Long.class))).thenReturn(depositsList);
+        when(depositRepo.findByAccountId(isA(Long.class))).thenReturn(depositsList);
 
         ResponseEntity<Iterable<Deposit>> expected = new ResponseEntity<>(depositsList, HttpStatus.OK);
-        ResponseEntity<Iterable<Deposit>> actual = depositService.getAllDepositsFromAccountId(depositTester.getId());
+        ResponseEntity<Iterable<Deposit>> actual = depositService.getAllDepositsFromAccount(depositTester.getId());
 
         Assert.assertEquals(expected, actual);
     }
