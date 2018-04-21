@@ -1,5 +1,7 @@
 package io.zipcoder.services;
 
+import io.zipcoder.entities.Account;
+import io.zipcoder.entities.Customer;
 import io.zipcoder.entities.Withdrawal;
 import io.zipcoder.repositories.AccountRepo;
 import io.zipcoder.repositories.WithdrawalRepo;
@@ -27,14 +29,13 @@ public class WithdrawalService {
     }
 
     public ResponseEntity<Withdrawal> getWithdrawalsByWithdrawalId(Long withdrawalId) {
-        return new ResponseEntity<>(withdrawalRepo.findByAccount(withdrawalId), HttpStatus.OK);
+        return new ResponseEntity<>(withdrawalRepo.findOne(withdrawalId), HttpStatus.OK);
     }
 
     public ResponseEntity<Withdrawal> createWithdrawal(Long accountId, Withdrawal withdrawal) {
         withdrawal.setAccount(accountRepo.findOne(accountId));
         Withdrawal newWithdrawal = withdrawalRepo.save(withdrawal);
         return new ResponseEntity<>(newWithdrawal, HttpStatus.CREATED);
-
     }
 
     public ResponseEntity<Withdrawal> updateWithdrawal(Long withdrawalId, Withdrawal withdrawal) {

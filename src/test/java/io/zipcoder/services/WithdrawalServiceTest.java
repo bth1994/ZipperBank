@@ -17,6 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+
+import static java.util.Collections.singletonList;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -26,16 +29,12 @@ import static org.mockito.Mockito.when;
 public class WithdrawalServiceTest {
 
     @Mock
-    private AccountRepo accountRepo;
-
-    @Mock
     private WithdrawalRepo withdrawalRepo;
 
     @InjectMocks
     private WithdrawalService withdrawalService;
 
     private Withdrawal testWithdrawal;
-    private Account testAccount;
 
     @Before
     public void init(){
@@ -48,19 +47,35 @@ public class WithdrawalServiceTest {
 
     @Test
     public void getAllWithdrawalsFromAccountIdTest(){
+        Iterable<Withdrawal> withdrawalList = singletonList(testWithdrawal);
+        when(withdrawalRepo.findByAccountId(isA(Long.class))).thenReturn(withdrawalList);
 
+        ResponseEntity<Iterable<Withdrawal>> expected = new ResponseEntity<>(withdrawalList, HttpStatus.OK);
+        ResponseEntity<Iterable<Withdrawal>> actual = withdrawalService.getAllWithdrawalsFromAccountId(testWithdrawal.getId());
+        Assert.assertEquals(expected, actual);
     }
     @Test
     public void getWithdrawalsByIdTest(){
-
+        when(withdrawalRepo.findOne(isA(Long.class))).thenReturn(testWithdrawal);
+        ResponseEntity<Withdrawal> expected = new ResponseEntity<>(testWithdrawal, HttpStatus.OK);
+        ResponseEntity<Withdrawal> actual = withdrawalService.getWithdrawalsByWithdrawalId(testWithdrawal.getId());
+        Assert.assertEquals(expected, actual);
+        verify(withdrawalRepo).findOne(isA(Long.class));
     }
     @Test
     public void createWithdrawalTest(){
-
+        when(withdrawalRepo.findOne(1L)).thenReturn(testWithdrawal);
+        when(withdrawalRepo.save(isA(Withdrawal.class))).thenReturn(testWithdrawal);
+        ResponseEntity<Withdrawal> expected = new ResponseEntity<>(testWithdrawal, HttpStatus.CREATED);
+        ResponseEntity<Withdrawal> actual = withdrawalService.createWithdrawal(testWithdrawal.getId(), testWithdrawal);
+        Assert.assertEquals(expected, actual);
     }
     @Test
     public void updateWithdrawalTest(){
-
+        when(withdrawalRepo.save(isA(Withdrawal.class))).thenReturn(testWithdrawal);
+        ResponseEntity<Withdrawal> expected = new ResponseEntity<>(testWithdrawal, HttpStatus.OK);
+        ResponseEntity<Withdrawal> actual = withdrawalService.updateWithdrawal(testWithdrawal.getId(), testWithdrawal);
+        Assert.assertEquals(expected, actual);
     }
     @Test
     public void deleteWithdrawalTest(){
