@@ -33,8 +33,6 @@ import static org.springframework.http.HttpStatus.OK;
 
 public class AccountServicesTest {
 
-    private MockMvc mockMvc;
-
     @Mock
     private AccountRepo accountRepo;
 

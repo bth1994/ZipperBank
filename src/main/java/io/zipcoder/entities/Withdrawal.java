@@ -26,8 +26,8 @@ public class Withdrawal {
     @Column(name = "TRANSACTION_STATUS")
     private TransactionStatus status;
 
-    @Column(name = "PAYER_ID")
-    private Long payerId;
+    @ManyToOne
+    private Account account;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "MEDIUM")
@@ -73,12 +73,12 @@ public class Withdrawal {
         this.status = status;
     }
 
-    public Long getPayeeId() {
-        return payerId;
+    public Account getAccount() {
+        return account;
     }
 
-    public void setPayeeId(Account account) {
-        this.payerId = account.getId();
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Medium getMedium() {
