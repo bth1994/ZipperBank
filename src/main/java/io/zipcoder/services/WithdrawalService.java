@@ -27,7 +27,7 @@ public class WithdrawalService {
     }
 
     public ResponseEntity<Withdrawal> getWithdrawalsByWithdrawalId(Long withdrawalId) {
-        return new ResponseEntity<>(withdrawalRepo.findByWithdrawalId(withdrawalId), HttpStatus.OK);
+        return new ResponseEntity<>(withdrawalRepo.findByAccount(withdrawalId), HttpStatus.OK);
     }
 
     public ResponseEntity<Withdrawal> createWithdrawal(Long accountId, Withdrawal withdrawal) {
@@ -38,9 +38,9 @@ public class WithdrawalService {
     }
 
     public ResponseEntity<Withdrawal> updateWithdrawal(Long withdrawalId, Withdrawal withdrawal) {
-        Withdrawal updateWithdrawal = withdrawalRepo.findByWithdrawalId(withdrawalId);
-        withdrawal = withdrawalRepo.save(updateWithdrawal);
-        return new ResponseEntity<>(withdrawal, HttpStatus.OK);
+        withdrawal.setId(withdrawalId);
+        Withdrawal newWithdrawal = withdrawalRepo.save(withdrawal);
+        return new ResponseEntity<>(newWithdrawal, HttpStatus.OK);
     }
 
     public ResponseEntity deleteWithdrawal(Long withdrawalId) {

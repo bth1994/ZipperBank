@@ -8,17 +8,20 @@ import io.zipcoder.repositories.BillRepo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import static java.util.Collections.singletonList;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@RunWith(SpringRunner.class)
 public class BillServiceTest {
 
     private Bill testBill;
@@ -74,10 +77,10 @@ public class BillServiceTest {
     @Test
     public void getBillsByCustomerId() {
         Iterable<Bill> bills = singletonList(testBill);
-        when(billRepo.findAllBillsByCustomerId(isA(Long.class))).thenReturn(bills);
+        when(billRepo.findAllBillsByAccount_Customer_Id(isA(Long.class))).thenReturn(bills);
         ResponseEntity<Iterable<Bill>> expected = new ResponseEntity<>(bills, HttpStatus.OK);
         ResponseEntity<Iterable<Bill>> actual = billService.getBillsByCustomerId(testCustomer.getId());
-        verify(billRepo).findAllBillsByCustomerId(isA(Long.class));
+        verify(billRepo).findAllBillsByAccount_Customer_Id(isA(Long.class));
         Assert.assertEquals(expected, actual);
     }
 

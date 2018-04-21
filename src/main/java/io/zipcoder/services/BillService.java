@@ -30,7 +30,7 @@ public class BillService {
     }
 
     public ResponseEntity<Iterable<Bill>> getBillsByCustomerId(Long customerId) {
-        return new ResponseEntity<>(billRepo.findAllBillsByCustomerId(customerId), HttpStatus.OK);
+        return new ResponseEntity<>(billRepo.findAllBillsByAccount_Customer_Id(customerId), HttpStatus.OK);
     }
 
     public ResponseEntity<Bill> createBill(Long accountId, Bill bill) {

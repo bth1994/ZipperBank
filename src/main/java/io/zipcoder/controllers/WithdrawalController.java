@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class WithdrawalController {
 
+    @Autowired
     private WithdrawalService withdrawalService;
 
-    @Autowired
-    public WithdrawalController(WithdrawalService withdrawalService){
-        this.withdrawalService = withdrawalService;
-    }
+//    @Autowired
+//    public WithdrawalController(WithdrawalService withdrawalService){
+//        this.withdrawalService = withdrawalService;
+//    }
 
     @RequestMapping(value = "/accounts/{accountId}/withdrawals", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Withdrawal>> getAllWithdrawalsFromAccountId(@PathVariable Long accountId){
